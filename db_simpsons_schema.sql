@@ -8,22 +8,22 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema db_simpsons_schema 
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `mydb` ;
+DROP SCHEMA IF EXISTS `db_simpsons_schema` ;
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema db_simpsons_schema 
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `db_simpsons_schema` DEFAULT CHARACTER SET utf8 ;
+USE `db_simpsons_schema` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`personajes`
+-- Table `db_simpsons_schema`.`personajes`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`personajes` ;
+DROP TABLE IF EXISTS `db_simpsons_schema`.`personajes` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`personajes` (
+CREATE TABLE IF NOT EXISTS `db_simpsons_schema`.`personajes` (
   `id_personajes` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   `apellido` VARCHAR(45) NOT NULL,
@@ -34,11 +34,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`capitulos`
+-- Table `db_simpsons_schema `.`capitulos`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`capitulos` ;
+DROP TABLE IF EXISTS `db_simpsons_schema`.`capitulos` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`capitulos` (
+CREATE TABLE IF NOT EXISTS `db_simpsons_schema`.`capitulos` (
   `id_capitulos` INT NOT NULL AUTO_INCREMENT,
   `titulo` VARCHAR(100) NOT NULL,
   `numero_episodio` INT NOT NULL,
@@ -50,29 +50,29 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`frases_has_capitulos`
+-- Table `db_simpsons_schema`.`frases_has_capitulos`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`frases_has_capitulos` ;
+DROP TABLE IF EXISTS `db_simpsons_schema`.`frases_has_capitulos` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`frases_has_capitulos` (
+CREATE TABLE IF NOT EXISTS `db_simpsons_schema`.`frases_has_capitulos` (
   `frases_id_frases` INT NOT NULL,
   `capitulos_id_capitulos` INT NOT NULL,
   PRIMARY KEY (`frases_id_frases`, `capitulos_id_capitulos`),
   INDEX `fk_frases_has_capitulos_capitulos1_idx` (`capitulos_id_capitulos` ASC) VISIBLE,
   CONSTRAINT `fk_frases_has_capitulos_capitulos1`
     FOREIGN KEY (`capitulos_id_capitulos`)
-    REFERENCES `mydb`.`capitulos` (`id_capitulos`)
+    REFERENCES `db_simpsons_schema`.`capitulos` (`id_capitulos`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`frases`
+-- Table `db_simpsons_schema`.`frases`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`frases` ;
+DROP TABLE IF EXISTS `db_simpsons_schema`.`frases` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`frases` (
+CREATE TABLE IF NOT EXISTS `db_simpsons_schema`.`frases` (
   `id_frases` INT NOT NULL AUTO_INCREMENT,
   `texto` TEXT NOT NULL,
   `marca_tiempo` VARCHAR(10) NULL,
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`frases` (
   INDEX `fk_frases_personajes1_idx` (`personajes_id_personajes` ASC) VISIBLE,
   CONSTRAINT `fk_frases_personajes1`
     FOREIGN KEY (`personajes_id_personajes`)
-    REFERENCES `mydb`.`personajes` (`id_personajes`)
+    REFERENCES `db_simpsons_schema`.`personajes` (`id_personajes`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
