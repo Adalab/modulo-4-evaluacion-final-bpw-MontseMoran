@@ -1,12 +1,12 @@
 const express = require("express");
-const getConnection = require("../db/db"); 
+const getConnection = require("../../db/db"); 
 const router = express.Router();
 
 
 router.get("/", async (req, res) => {
   try {
     const conn = await getConnection();
-    const [rows] = await conn.query("SELECT * FROM frases");
+    const [rows] = await conn.query("SELECT frases.id_frases,frases.texto, frases.marca_tiempo, frases.descripcion, personajes.nombre AS personaje,capitulos.titulo AS capitulo FROM frases JOIN frases_has_capitulos ON frases.id_frases = frases_has_capitulos.frases_id_frases JOIN capitulos ON frases_has_capitulos.capitulos_id_capitulos = capitulos.id_capitulos JOIN personajes ON frases.personajes_id_personajes = personajes.id_personajes ORDER BY frases.id_frases ASC");
     await conn.end();
     res.json(rows);
   } catch (error) {
@@ -36,13 +36,18 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const conn = await getConnection();
-    const { texto, marca_tiempo, descripcion, personajes_id_personajes } = req.body;
+    const { texto, marca_tiempo, descripcion, personajes_id_personajes, capitulos_id_capitulos} = req.body;
     const [result] = await conn.query(
       "INSERT INTO frases (texto, marca_tiempo, descripcion, personajes_id_personajes) VALUES (?, ?, ?, ?)",
       [texto, marca_tiempo, descripcion, personajes_id_personajes]
     );
+    await conn.query(
+  "INSERT INTO frases_has_capitulos (frases_id_frases, capitulos_id_capitulos) VALUES (?, ?)",
+  [result.insertId, capitulos_id_capitulos]
+);
+
     await conn.end();
-    res.json({ mensaje: "Frase insertada correctamente", id: result.insertId });
+    res.status(200).json({ mensaje: "Frase insertada correctamente", id: result.insertId });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -82,6 +87,8 @@ router.put("/:id", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+
 
 module.exports = router;
 

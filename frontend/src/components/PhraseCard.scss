@@ -1,0 +1,39 @@
+article {
+  background-color: #fff8dc;
+  border-radius: 0.75rem;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 1rem 1.5rem;
+  padding-bottom: 2rem;
+  margin: 1rem;
+  border: 2px solid #ffcc00;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  height: 90%;
+  min-height: 150px;
+  position: relative;
+  transition: transform 0.2s ease;
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+
+.phrase-text {
+  font-style: italic;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.phrase-character {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #333;
+}
+.character-img {
+  width: 80px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+}

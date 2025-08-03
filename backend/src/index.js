@@ -1,8 +1,9 @@
 const express = require("express");
 const cors = require("cors");
-const db = require('./db/db');
+const db = require('../db/db');
 const personajesRouter = require('./routes/personajes');
-const frasesRouter = require ('./routes/frases')
+const frasesRouter = require ('./routes/frases');
+const capitulosRouter = require ('./routes/capitulos');
 
 require("dotenv").config();
 
@@ -20,3 +21,4 @@ server.get("/", (req, res) => {
 });
 server.use('/personajes', personajesRouter);
 server.use ('/frases', frasesRouter);
+server.use ('/capitulos', capitulosRouter);

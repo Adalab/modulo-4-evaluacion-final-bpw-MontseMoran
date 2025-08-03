@@ -1,0 +1,26 @@
+
+section {
+  width: 100vw;
+  padding: 2rem;
+  background-color: #f6f1da;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.phrase-list {
+  background-image: url('../assets/characters/donuts.jpg');
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  list-style: none;
+  width: 70%;
+  max-width: 100%;
+  grid-auto-rows: 1fr;
+}
+
+body{
+    overflow-x: hidden;
+}

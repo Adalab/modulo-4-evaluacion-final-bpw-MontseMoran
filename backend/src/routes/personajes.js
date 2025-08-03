@@ -1,5 +1,5 @@
 const express = require("express");
-const getConnection = require("../db/db");
+const getConnection = require("../../db/db");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
@@ -7,7 +7,7 @@ router.get("/", async (req, res) => {
     const conn = await getConnection();
     const [rows] = await conn.query("SELECT * FROM personajes");
      await conn.end();
-    res.status(200).json;
+    res.status(200).json(rows)
    
   } catch (error) {
     res.status(404).json({ error: "Error al obtener personajes" });
@@ -19,11 +19,10 @@ router.get("/:id", async (req, res) => {
      const id = req.params.id;
     const [rows] = await conn.query("SELECT * FROM personajes WHERE id_personajes=?", [id]);
     await conn.end();
-    res.status.json;
-   
-    if (rows.lenth === 0){
+        if (rows.length === 0){
       return res.status(404).json ({message: "Personaje no encontrado"});
     }
+     res.status(200).json(rows);
   } catch (error) {
     res.status(404).json({ error: "Error al obtener personaje" });
   }
@@ -41,8 +40,8 @@ router.post("/", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-});
-router.delete("/:id", async (req, res) => {
+}); 
+ router.delete("/:id", async (req, res) => {
   try {
     const conn = await getConnection();
     const id = req.params.id;
@@ -59,8 +58,8 @@ router.delete("/:id", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-});
-router.put("/:id", async (req, res) => {
+}); 
+ router.put("/:id", async (req, res) => {
   try {
     const conn = await getConnection();
     const id = req.params.id;
@@ -74,6 +73,6 @@ router.put("/:id", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-});
+}); 
 
 module.exports = router;
