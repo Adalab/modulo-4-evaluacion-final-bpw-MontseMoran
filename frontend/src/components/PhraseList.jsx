@@ -7,7 +7,7 @@ import './PhraseCard.scss'
 
 function PhraseList() {
       const [phrases, setPhrases] = useState([]);
-      const [selectedCharacter, setSelectedCharacter] = useState('');
+      const [selectedCharacter, setSelectedCharacter] = useState('Todos');
 
   useEffect(() => {
    fetch('https://modulo-4-evaluacion-final-bpw-montsemoran.onrender.com/frases')
@@ -25,7 +25,7 @@ const filteredPhrases = selectedCharacter === 'Todos'
    
     <div className='phrase-list__container'>
     <select className='select-characters' value={selectedCharacter} onChange={(ev) => setSelectedCharacter(ev.target.value)}>
-      <option value="" disabled hidden>Selecciona un personaje</option>
+      <option value="Todos" disabled hidden>Selecciona un personaje</option>
   <option value="Todos">Todos</option>
   
   {[...new Set(phrases.map(p => p.personaje))].map(personaje => (
