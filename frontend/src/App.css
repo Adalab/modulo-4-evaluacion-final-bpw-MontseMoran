@@ -1,2 +1,21 @@
 
 
+.header {
+  background-color: #b4c8ed; 
+  padding: 2rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    max-width: 300px;
+    height: auto;
+    filter: drop-shadow(2px 2px 4px #333);
+    transition: transform 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+

@@ -4,9 +4,10 @@ import './PhraseList.scss'
 import PhraseCard from './PhraseCard';
 import './PhraseCard.scss'
 
+
 function PhraseList() {
       const [phrases, setPhrases] = useState([]);
-      const [selectedCharacter, setSelectedCharacter] = useState('Todos');
+      const [selectedCharacter, setSelectedCharacter] = useState('');
 
   useEffect(() => {
     fetch('http://localhost:4000/frases')
@@ -19,16 +20,18 @@ const filteredPhrases = selectedCharacter === 'Todos'
   : phrases.filter(phrase => phrase.personaje === selectedCharacter);
 
   return (
-    <>
-    <select value={selectedCharacter} onChange={(ev) => setSelectedCharacter(ev.target.value)}>
+      <section className='main-wrapper'>
+   
+    <div className='phrase-list__container'>
+    <select className='select-characters' value={selectedCharacter} onChange={(ev) => setSelectedCharacter(ev.target.value)}>
+      <option value="" disabled hidden>Selecciona un personaje</option>
   <option value="Todos">Todos</option>
   
   {[...new Set(phrases.map(p => p.personaje))].map(personaje => (
     <option key={personaje} value={personaje}>{personaje}</option>
   ))}
 </select>
-
-    <section>
+  
         <ul className='phrase-list'>
   {filteredPhrases.map((phrase) => (
     <li key={phrase.id_frases}> 
@@ -39,8 +42,9 @@ const filteredPhrases = selectedCharacter === 'Todos'
     </li>
   ))}
 </ul>
+</div>
 </section>
-</>
+
   );
 }
 
