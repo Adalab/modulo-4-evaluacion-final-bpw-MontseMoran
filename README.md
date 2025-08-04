@@ -1,4 +1,5 @@
 Evaluación Final - Módulo 4:API REST Simpson
+
 Este proyecto es una aplicación web desarrollada con React. Muestra frases de los personajes de la serie "Los Simpson" y permite filtrarlas por personaje. Es parte de la evaluación final del Módulo 4 del curso de Adalab.
 
 Tecnologías utilizadas  en Frontend:
