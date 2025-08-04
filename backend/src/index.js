@@ -13,8 +13,8 @@ server.use(cors());
 const port = process.env.PORT || 4000;
 
 
-server.listen(port, () => {
-  console.log(`Server listening at: http://localhost:${port}`);
+server.listen(port, '0.0.0.0', () => {
+  console.log(`Server listening at: http://0.0.0.0:${port}`);
 });
 
 server.use(express.json());
