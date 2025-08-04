@@ -10,7 +10,8 @@ require("dotenv").config();
 
 const server = express();
 server.use(cors());
-const port = 4000;
+const port = process.env.PORT || 4000;
+
 
 server.listen(port, () => {
   console.log(`Server listening at: http://localhost:${port}`);

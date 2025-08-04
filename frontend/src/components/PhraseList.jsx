@@ -10,7 +10,8 @@ function PhraseList() {
       const [selectedCharacter, setSelectedCharacter] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:4000/frases')
+   fetch('https://modulo-4-evaluacion-final-bpw-montsemoran.onrender.com/frases')
+
       .then((res) => res.json())
       .then((data) => setPhrases(data))
       .catch((error) => console.error('Error al traer frases:', error));

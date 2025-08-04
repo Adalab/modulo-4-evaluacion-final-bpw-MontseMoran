@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
     await conn.end();
     res.json(rows);
   } catch (error) {
-    res.status(500).json({ error: "Error al obtener frases" });
+    res.status(500).json({ error: error.message });
   }
 });
 
