@@ -34,6 +34,7 @@ https://modulo-4-evaluacion-final-bpw-montsemoran.onrender.com/frases
 
 Opción 2: Ejecutar en local
 Clona este repositorio: git clone https://github.com/MontseMoran/modulo-4-evaluacion-final-bpw-MontseMoran.git
+
 Entra a la carpeta del frontend: cd frontend
 Instala las dependencias: npm install
 Lanza el servidor: npm run dev
